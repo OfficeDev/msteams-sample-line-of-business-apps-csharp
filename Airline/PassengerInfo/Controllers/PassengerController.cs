@@ -83,13 +83,17 @@ namespace Airline.PassengerInfo.Web.Controllers
             }
             return View(passenger);
         }
-        // POST: /Employee/Delete/5
+        // POST: /Passenger/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public  async Task<ActionResult> DeleteConfirmed(string PNR)
         {
             var passengers = await DocumentDBRepository<Passenger>.GetItemsAsync(d => d.PNR == PNR);
             Passenger passenger = passengers.FirstOrDefault();
+            if (passenger == null)
+            {
+                return HttpNotFound();
+            }
             await DocumentDBRepository<Passenger>.DeleteDocumentAsync(PNR);
             return RedirectToAction("Index");
         }
