@@ -1,3 +1,5 @@
+Note : This is not a production ready app
+
 ## Notification:
 
 This application notifies select users when an event occurs. In this example, there are three types of notifications – weather update, operations delay and social events.
