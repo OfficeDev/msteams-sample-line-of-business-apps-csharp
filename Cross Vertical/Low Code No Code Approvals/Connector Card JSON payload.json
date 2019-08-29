@@ -63,7 +63,7 @@
           "name": "Reject",
           "inputs": [
             {
-              "@type": "TextInput",
+              "@@type": "TextInput",
               "id": "RejectComment",
               "isMultiline": true,
               "title": "Reason(optional)"
