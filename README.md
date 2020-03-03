@@ -48,6 +48,8 @@ These are applications that can be used by employees, regardless of industry:
 
 All these samples are deployed on Microsoft Azure and you can try it yourself by uploading respective app packages (.zip files links below) to one of your teams and/or as a personal app. (Sideloading must be enabled for your tenant; see [step 6 here](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-tenant#turn-on-microsoft-teams-for-your-organization).) These apps are running on the free Azure tier, so it may take a while to load (warm up) if you haven't used it recently and it goes back to sleep quickly if it's not being used. Rest assured, once it's loaded it's pretty snappy.
 
+**Note** Database Cleanup service cleans up user details from the database every Monday for the below apps. Hence user details should be provided every time to use the app after the database Cleanup.
+
 [Flight Info Bot](Airline/FlightInfo/Manifest/Flight%20Info%20App%20Manifest.zip)<br>
 [Passenger Info Bot](Airline/PassengerInfo/Manifest/Passenger%20Information%20App%20Manifest.zip)<br>
 [Baggage Info Bot](Airline/BaggageInfo/Manifest/Baggage%20Info%20App%20Manifest.zip)<br>
