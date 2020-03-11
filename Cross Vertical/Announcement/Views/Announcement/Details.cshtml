@@ -1,0 +1,198 @@
+﻿@model CrossVertical.Announcement.Models.AnnouncementDetails
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/b"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        td {
+        }
+
+        html, body{
+            height: 100%;
+            background-color: #f3f2f1;
+            
+        }
+        #container {
+            height: 100%;
+            background-color: #f3f2f1;
+            
+        }
+
+        header {
+            height: 175px;
+        }
+
+        main {
+            height: calc(100% - 50px);
+        }
+
+        .split-left {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            padding-left: 15px;
+            overflow-x: hidden;
+            padding-top: 10px;
+            left: 0;
+            font-size: 12px;
+        }
+
+        .split-right {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            padding-top: 10px;
+            font-size: 8px;
+            overflow-x: hidden;
+            right: 0;
+        }
+
+        .panel-group {
+            width: 30%;
+            opacity: 1.5;
+            border: 10px solid transparent;
+            display: block;
+            border: 1px solid transparent;
+            box-shadow: 0 0 8px 0 #D3D3D3;
+        }
+
+        .panel-heading {
+            padding: 34px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .heading {
+            background-color: white;
+            border-bottom: 1px solid #f3f2f1;
+        }
+
+        .body {
+            background-color: white;
+            padding: 7px;
+        }
+
+        .panel-body {
+            padding: 15px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .dot {
+            height: 40px;
+            width: 40px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            float: left;
+        }
+
+        .text {
+            font-family: 'Segoe UI';
+            font-size: 12px;
+            height: 16px;
+            width: 25px;
+            color: rgba(37,36,36,0.65);
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div id="container">
+        @*upper div*@
+        <br />
+        <br />
+        <header>
+            <div class="row">
+                <div class="col-md-4">
+                    <div style="padding-left:15px;">
+                        <div class="heading">
+                            <div class="panel-heading text-center">
+                                <span style="font-size:22px;padding-top:40px;">64%</span> <br style="line-height:25px;" />OpenRate
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table rules="none">
+                                <tr>
+                                    <td style="padding-right: 150px;padding-bottom:10px;">Contoso All Employees</td>
+                                    <td style="padding-right:5px;padding-bottom:10px;">56%</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-right: 150px;padding-bottom:10px;">Contoso LT</td>
+                                    <td style="padding-right:5px;padding-bottom:10px;">88%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div style="padding-left:15px;">
+                        <div class="heading">
+                            <div class="panel-heading text-center">
+                                <span style="font-size:22px;">21</span><br style="line-height:25px;" />Replies
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table rules="none">
+                                <tr>
+                                    <td class="cent"><img class="dot" src="~/Resources/download.jpg" /></td>
+                                    <td style="padding-left:20px;"><p style="font-weight:bold">Will Little</p><br style="line-height:12px;" />Awesome News! Can we all work there?</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div style="padding-left:15px;">
+                        <div class="heading">
+                            <div class="panel-heading text-center">
+                                <span style="font-size:22px;">125</span><br style="line-height:25px;" />Reactions
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="panel-body text-center">
+                                👍 40
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </header>
+        @*Lower div*@
+        <main>
+            <div style="overflow:scroll">
+                <div class="split-left">
+                    <span class="text">Published announcement</span>
+                    @Html.Raw(Model.html)
+                </div>
+                <div class="split-right">
+                    <span class="text">  Replies</span>
+                </div>
+            </div>
+
+
+        </main>
+    </div>
+    
+</body>
+</html>

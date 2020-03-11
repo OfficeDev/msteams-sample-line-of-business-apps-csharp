@@ -1,0 +1,170 @@
+﻿@model CrossVertical.Announcement.ViewModels.ListDetails
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .imgstyle {
+            font-size: 14px;
+            height: 22px;
+            opacity: 0.8;
+            vertical-align: bottom;
+        }
+
+
+
+        .imgstyle1 {
+            font-size: 14px;
+            height: 20px;
+            opacity: 0.8;
+            vertical-align: bottom;
+            color: #6264A7;
+            cursor: pointer;
+        }
+
+
+
+        .rect {
+            padding: 6PX;
+            height: 34px;
+            color: #6264A7;
+            border: 1px solid #6264A7;
+            border-radius: 2px;
+            background-color: white;
+            box-shadow: 0 2px 4px -0.75px rgba(0,0,0,0.1);
+            font-family: "Segoe UI";
+            font-size: 14px;
+            margin-right: 0px;
+        }
+    </style>
+
+</head>
+@*onload="@(Model.Type)ReadAllPhotos(this);"*@
+<body>
+
+    <div class="container">
+        <br />
+
+        @if (Model != null && Model.Items.Count != 0)
+
+        {
+
+            <table rules="none" style="width:100%;height:auto;">
+
+                @foreach (var item in Model.Items)
+
+                {
+
+                    <tr style="border:2px solid white">
+
+                        <td style="padding-top:6px;padding-left:6px;width:15%">
+                            <img id="@(Model.Type)_ImageUrl_@(item.Id)" style="border-radius:50%;width:45px;height:45px"
+                                 src="@item.ImageUrl" name="@(Model.Type)_ProfileImage" />
+                        </td>
+                        @if (!string.IsNullOrEmpty(item.DeepLinkUrl))
+                        {
+                            <td style="width:55%"><span style="font-family:'Segoe UI';font-size:16px;font-weight:500;">@item.Title</span><br style="line-height:17px;" /><span style="color:darkgrey;font-family:'Segoe UI'">@item.SubTitle.ToUpperInvariant()</span></td>
+                        }
+                        else
+                        {
+                            <td>
+                                <span id="@(Model.Type)_Title_@(item.Id)" style="font-family:'Segoe UI';font-size:16px;font-weight:500;">@item.Title</span><br style="line-height:17px;" />
+                                <span id="@(Model.Type)_SubTitle_@(item.Id)" style="color:darkgrey;font-family:'Segoe UI'">@item.SubTitle.ToUpperInvariant()</span>
+                            </td>
+                        }
+
+                        @if (item.EnableLikeButton)
+
+                        {
+
+                            <td style="padding:6px;"><img src="~/Resources/Like.PNG" class="imgstyle" /></td>
+
+                            <td style="padding:6px;"><a target="_blank" href="@(item.ChatUrl)"><img src="~/Resources/chat.PNG" class="imgstyle1" /></a></td>
+
+                        }
+
+                        else if (!string.IsNullOrEmpty(item.ChatUrl) && !item.EnableLikeButton)
+
+                        {
+
+                            <td style="padding:6px;"><a target="_blank" href="@(item.ChatUrl)"><img src="~/Resources/chat.PNG" class="imgstyle1" /></a></td>
+
+                        }
+
+                        else if (!string.IsNullOrEmpty(item.DeepLinkUrl) && string.IsNullOrEmpty(item.ChatUrl) && !item.EnableLikeButton)
+
+                        {
+
+                            <td width="30%">
+
+                                <a target="_blank" href="@(item.DeepLinkUrl)">
+                                    <button class="rect" style="width: 130px;">
+                                        View Conversation
+
+                                    </button>
+                                </a>
+
+                            </td>
+
+                        }
+
+                    </tr>
+
+                }
+
+            </table>
+        }
+        else
+        {
+            <p style="margin:5px;">User @(Model.Title)s will be shown here.</p>
+        }
+
+    </div>
+    <script>
+        function @(Model.Type)ReadAllPhotos(context) {
+                 //GEt all images.
+            var isProfileImage = @Json.Encode(Model.Type.Contains("person"));
+            var images = document.getElementsByName("@(Model.Type)_ProfileImage");
+
+                 for (var i = 0; i < images.length; i++) {
+                     // GEt Image Src => UserID
+                     var userId = images[i].id.replace("@(Model.Type)_ImageUrl_","");
+                     var url = '/fetchProfilePhoto?tid=' + '@Model.TenantId' + "&id=" + userId + "&type=" + '@(Model.Type)';
+                     $.ajax({
+                         url: url,
+                         type: 'get',
+                         contentType: 'application/json',
+
+                         success: function (data, textStatus, jQxhr) {
+                             var details = JSON.parse(data);
+                             document.getElementById("@(Model.Type)_ImageUrl_" + details['id']).src = details['imageUrl'];
+
+                             if (isProfileImage) {
+                                 // Set job title and name.
+                                 document.getElementById("@(Model.Type)_Title_" + details['id']).innerText = details['title'];
+                                 document.getElementById("@(Model.Type)_SubTitle_" + details['id']).innerText = details['subTitle'];
+                             }
+                         },
+                         error: function (jqXhr, textStatus, errorThrown) {
+                             //alert('Working on getting data. Failure ' + JSON.stringify(jqXhr));
+                         }
+                     });
+                 }
+
+             }
+    </script>
+</body>
+
+</html>

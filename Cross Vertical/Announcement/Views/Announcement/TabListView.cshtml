@@ -1,0 +1,114 @@
+﻿@model CrossVertical.Announcement.ViewModels.TabListViewModel
+
+
+
+@{
+
+    Layout = null;
+
+}
+
+
+
+<!DOCTYPE html>
+
+
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>TabListView</title>
+
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid white;
+        }
+
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                margin-left: 2px;
+                transition: 0.3s;
+                font-size: 14px;
+                font-family: 'Segoe UI';
+            }
+
+
+
+
+
+                .tab button:hover {
+                    border-bottom: 2px solid #6264A7;
+                }
+
+
+
+
+
+                .tab button.active {
+                    border-bottom: 3px solid #6264A7;
+                }
+
+
+
+
+
+        .tabcontent {
+            display: none;
+            border-top: none;
+        }
+    </style>
+</head>
+<body onload="@(Model.FirstTab.Items.Count!=0? (Model.FirstTab.Type)+ "ReadAllPhotos(this);" : "")@(Model.SecondTab.Items.Count!=0? (Model.SecondTab.Type)+ "ReadAllPhotos(this)" : "")" style="padding:0 1.0rem;">
+    <br />
+    <div class="tab">
+        @if (Model.FirstTab.Items.Count != 0)
+            {
+            <button class="tablinks @(Model.SelectFirstTab ? "active" : "")" onclick="openTab(event, 'First')">@Model.FirstTab.Title</button>
+        }
+        @if (Model.SecondTab.Items.Count != 0)
+            {
+            <button class="tablinks @(!Model.SelectFirstTab ? "active" : "")" onclick="openTab(event, 'Second')">@Model.SecondTab.Title</button>
+        }
+    </div>
+
+    @if (Model.FirstTab.Items.Count != 0)
+    {
+        <div id="First" class="tabcontent" style="display: @(Model.SelectFirstTab ? "block" : "none");">
+
+            @Html.Partial("_ListTabPage", Model.FirstTab)
+        </div>
+    }
+    @if (Model.SecondTab.Items.Count != 0)
+    {
+        <div id="Second" class="tabcontent" style="display: @(Model.SelectFirstTab ? "none" : "block" );">
+
+            @Html.Partial("_ListTabPage", Model.SecondTab)
+        </div>
+    }
+    <script>
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+﻿{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.3/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.3",
+  "version": "1.0.0",
+  "id": "b06c8c85-8e0a-4621-b034-0fb26b6d3be7",
+  "packageName": "com.industrydemo.announcement",
+  "developer": {
+    "name": "Industry Demo Team",
+    "websiteUrl": "https://www.microsoft.com",
+    "privacyUrl": "https://www.microsoft.com/privacy",
+    "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
+  },
+  "name": {
+    "short": "Contoso Broadcast",
+    "full": "Broadcast app for Microsoft Teams"
+  },
+  "description": {
+    "short": "Contoso Broadcast app for Microsoft Teams",
+    "full": "This sample broadcast app which demos broadcast flow. You can extend this to add more content and capabilities."
+  },
+  "icons": {
+    "outline": "outline.png",
+    "color": "color.png"
+  },
+  "accentColor": "#60A18E",
+  "staticTabs": [
+    {
+      "entityId": "com.contoso.Announcement.history",
+      "name": "History",
+      "contentUrl": "https://announcement.azurewebsites.net/history?tid={tid}",
+      "websiteUrl": "https://announcement.azurewebsites.net/history",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
+  "bots": [
+    {
+      "botId": "b06c8c85-8e0a-4621-b034-0fb26b6d3be7",
+      "needsChannelSelector": false,
+      "isNotificationOnly": false,
+      "supportsFiles": true,
+      "scopes": [
+        "personal",
+        "team"
+      ],
+      "commandLists": [
+        {
+          "scopes": [
+            "personal",
+            "team"
+          ],
+          "commands": [
+            {
+              "title": "help",
+              "description": "Disaplys options available with Announcement Bot"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": []
+}
