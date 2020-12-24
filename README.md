@@ -44,26 +44,7 @@ These are applications that can be used by employees, regardless of industry:
 1. **Employee Leave App**<br>
     The app has an employee and manager workflow with bot and tab capabilities. It enables an employee to raise a new vacation request, check leave balance status and public holidays. In addition, when an employee raises a new vacation request, the manager gets a notification and the approval / reject workflow can be completed from within the app on Teams.  
 
-## Experience the Apps in your Microsoft Teams client
 
-All these samples are deployed on Microsoft Azure and you can try it yourself by uploading respective app packages (.zip files links below) to one of your teams and/or as a personal app. (Sideloading must be enabled for your tenant; see [step 6 here](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-tenant#turn-on-microsoft-teams-for-your-organization).) These apps are running on the free Azure tier, so it may take a while to load (warm up) if you haven't used it recently and it goes back to sleep quickly if it's not being used. Rest assured, once it's loaded it's pretty snappy.
-
-> [!NOTE]
-> The database which stores basic user details for demonstration purpose are cleaned every week. You might need to Sign In again to use the applications.
-
-
-[Flight Info Bot](Airline/FlightInfo/Manifest/Flight%20Info%20App%20Manifest.zip)<br>
-[Passenger Info Bot](Airline/PassengerInfo/Manifest/Passenger%20Information%20App%20Manifest.zip)<br>
-[Baggage Info Bot](Airline/BaggageInfo/Manifest/Baggage%20Info%20App%20Manifest.zip)<br>
-[Flight Team Creation Bot](Airline/FlightTeamCreation/Manifest/Flight%20Team%20Creation%20App%20Manifest.zip)<br>
-[Fleet Bot](Airline/FleetInfoBot/Manifest/FleetInfo%20App%20Manifest.zip)<br>
-[Cabin Crew Roaster Bot](Airline/XAirlines/Manifest/Airlines%20Manifest.zip)<br>
-[Notification Bot](Cross%20Vertical/NotificationBot/Manifest/Notification%20App.zip)<br>
-[Employee survey / Polling bot](Cross%20Vertical/PollingBot/Manifest/Polling%20App%20Manifest.zip)<br>
-[Inventory Bot](Manufacturing/InventoryBot/Manifest/Inventory%20App%20Manifest.zip)<br>
-[Employee Leave](Professional%20Services/LeaveBot/Manifest/Leave%20App%20Manifest.zip)<br>
-[Company Communicator](Cross%20Vertical/CompanyCommunicator/Manifest/Company%20Communicator%20App%20Manifest.zip) - Please try [Company Communicator App Template](https://docs.microsoft.com/en-us/microsoftteams/platform/samples/app-templates#company-communicator).
-<br>
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
